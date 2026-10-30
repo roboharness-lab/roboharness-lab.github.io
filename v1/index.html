@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="RoboHarness connects coding agents to robots for generalist manipulation through visual feedback and geometric actions.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="RoboHarness: A Simple Harness Outperforms VLA and World Action Models">
+  <meta property="og:description" content="Generalist mobile manipulation with coding agents.">
+  <meta property="og:url" content="https://roboharness-lab.github.io/v1/">
+  <meta property="og:image" content="https://roboharness-lab.github.io/v1/assets/overview.png">
+  <meta property="og:image:alt" content="RoboHarness paper overview: geometry tracking, geometric action tools, coding agents, and an example rollout.">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://roboharness-lab.github.io/v1/">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="styles.css?v=fa58b88005ad">
+  <script src="app.js?v=f51c94ae35eb" defer></script>
+  <title>RoboHarness: A Simple Harness Outperforms VLA and World Action Models</title>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <main id="main">
+    <section class="container hero" id="top" aria-labelledby="hero-title">
+      <img class="hero-wordmark" src="assets/roboharness-wordmark.png" alt="RoboHarness" width="480" height="93">
+      <h1 id="hero-title"><span>A Simple Harness Outperforms</span><span>VLA and World Action Models</span></h1>
+      <p class="hero-description">Generalist mobile manipulation with coding agents.</p>
+      <div class="hero-links">
+        <a class="button" href="https://arxiv.org/abs/2610.14018" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9Z"/><path d="M14 3v6h6M8 13h8M8 17h6"/></svg>Paper</a>
+        <a class="button primary" href="https://github.com/BinceQu/RoboHarness"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 .75a11.25 11.25 0 0 0-3.56 21.92c.56.1.77-.24.77-.54v-2.1c-3.14.68-3.8-1.34-3.8-1.34-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.68.08-.68 1.13.08 1.73 1.16 1.73 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.4-1.23.71-1.51-2.5-.28-5.13-1.25-5.13-5.56 0-1.23.44-2.24 1.16-3.03-.12-.28-.5-1.43.11-2.98 0 0 .95-.3 3.1 1.16a10.8 10.8 0 0 1 5.64 0c2.15-1.46 3.1-1.16 3.1-1.16.61 1.55.23 2.7.11 2.98.72.79 1.16 1.8 1.16 3.03 0 4.32-2.63 5.28-5.14 5.56.4.35.76 1.04.76 2.1v3.09c0 .3.2.65.78.54A11.25 11.25 0 0 0 12 .75Z"/></svg>Code</a>
+        <a class="button" href="#results">Results <span aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+
+    <figure class="container overview-figure">
+      <a class="figure-link" href="assets/overview.pdf" target="_blank" rel="noopener" aria-label="Open the original RoboHarness overview PDF">
+        <img src="assets/overview.png" width="1618" height="1315" alt="RoboHarness overview: a geometry tracker and minimal toolset connect a coding agent to a robot; an example rollout shows key insertion through visual feedback and geometric constraints." fetchpriority="high">
+      </a>
+    </figure>
+
+    <section class="container section abstract-section" id="abstract" aria-labelledby="abstract-title">
+      <div class="section-heading">
+        <h2 id="abstract-title">Abstract</h2>
+      </div>
+      <div class="abstract-copy">
+        <p>The rise of large language models (LLMs) has opened a path toward generalist embodied AI, raising the question of how LLMs can act in the physical world. One straightforward approach is training the model to generate actions: collect robot-action data and video demonstration, refine LLM architecture with an action head, and train a vision-language-action (VLA) model at scale.</p>
+        <p>However, we argue that coding agents have the potential to realize generalist embodied manipulation. All they need is a simple yet effective robot harness. We present <strong>RoboHarness</strong>: a robotic harness that gives LLM agents a visual-geometric control panel so that they can directly understand and invoke embodied tasks. With RoboHarness, Qwen3.8-Flash-Next outperforms state-of-the-art VLA models on BEHAVIOR Challenge 2025 tasks. The implementation is open source.</p>
+      </div>
+    </section>
+
+    <section class="container section method-section" id="method" aria-labelledby="method-title">
+      <div class="section-heading">
+        <h2 id="method-title">Method</h2>
+      </div>
+      <video class="method-video" id="method-video" src="https://huggingface.co/datasets/BinceQu/RoboHarness-assets/resolve/7e73016ce196802ffa89673b04905c605cbbf951/v1/docs/assets/method/roboharness-method.mp4" poster="assets/method/roboharness-method-poster.jpg?v=1fe4433a5563" width="1920" height="1080" controls playsinline preload="metadata" aria-label="RoboHarness method demonstration">
+        Your browser does not support video playback.
+      </video>
+    </section>
+
+    <section class="container section archive-section" id="task-results" aria-labelledby="results-title">
+      <div class="section-heading">
+        <h2 id="results-title">Task results</h2>
+        <p>Qwen3.8-Flash-Next · mean Q-score over five instances.</p>
+      </div>
+      <div class="task-carousel" id="task-carousel" role="region" aria-roledescription="carousel" aria-label="Task results" tabindex="0" hidden>
+        <article class="task-card" id="card-task00" data-task="task00" aria-labelledby="title-task00" hidden>
+          <header class="task-card-heading">
+            <h3 id="title-task00">Turning On Radio</h3>
+            <a class="instruction-source" href="https://behavior.stanford.edu/challenge/tasks/00_turning_on_radio.html" target="_blank" rel="noopener">Official instruction ↗</a>
+            <p class="task-instruction">Turn on the radio receiver that&#x27;s on the table in the living room.</p>
+          </header>
+          <div class="task-columns">
+            <div class="rollout-panel"><video class="rollout-video" data-src="https://huggingface.co/datasets/BinceQu/RoboHarness-assets/resolve/7e73016ce196802ffa89673b04905c605cbbf951/v1/docs/assets/rollouts/task00-head.mp4" poster="assets/rollouts/task00-poster.jpg?v=154aa9706bb5" controls autoplay muted loop playsinline preload="none" aria-label="Turning On Radio, head-camera rollout, instance 307">Your browser does not support video playback.</video><p class="rollout-error" role="status" hidden>Video could not load. <a href="https://huggingface.co/datasets/BinceQu/RoboHarness-assets/resolve/7e73016ce196802ffa89673b04905c605cbbf951/v1/docs/assets/rollouts/task00-head.mp4">Open the video ↗</a></p></div>
+            <div class="score-panel">
+              <div class="selected-metric"><span class="task-mean">0.4000</span><span>Mean Q-score</span></div>
+              <p class="chart-heading">Q-score by instance</p>
+              <div class="score-chart" role="img" aria-label="turning on radio. Archived Q-scores: instance 301: 0.0000; instance 304: 0.0000; instance 306: 0.0000; instance 308: 1.0000; instance 310: 1.0000"><div class="chart-column" style="--q:0.000000%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">0.0000</span><span class="chart-label">301</span></div><div class="chart-column" style="--q:0.000000%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">0.0000</span><span class="chart-label">304</span></div><div class="chart-column" style="--q:0.000000%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">0.0000</span><span class="chart-label">306</span></div><div class="chart-column" style="--q:100.000000%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">1.0000</span><span class="chart-label">308</span></div><div class="chart-column" style="--q:100.000000%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">1.0000</span><span class="chart-label">310</span></div></div>
+            </div>
+          </div>
+          <div class="task-media-caption"><span>Head camera · Instance 307</span><span>Recorded Q 1.0000</span><button type="button" class="speed-toggle" aria-label="Playback speed: 4 times. Change playback speed." data-rate="4">4×</button></div>
+          <nav class="task-navigation" aria-label="Switch task">
+            <button type="button" class="task-arrow" data-step="-1" aria-label="Previous task: Putting Up Christmas Decorations Inside"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button>
+            <span class="task-position" aria-label="Task 1 of 9">01 <span aria-hidden="true">/</span> 09</span>
+            <button type="button" class="task-arrow" data-step="1" aria-label="Next task: Picking Up Trash"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg></button>
+          </nav>
+        </article>
+<article class="task-card" id="card-task01" data-task="task01" aria-labelledby="title-task01" hidden>
+          <header class="task-card-heading">
+            <h3 id="title-task01">Picking Up Trash</h3>
+            <a class="instruction-source" href="https://behavior.stanford.edu/challenge/tasks/01_picking_up_trash.html" target="_blank" rel="noopener">Official instruction ↗</a>
+            <p class="task-instruction">Put the three cans of soda from the living room inside the trash can in the kitchen.</p>
+          </header>
+          <div class="task-columns">
+            <div class="rollout-panel"><video class="rollout-video" data-src="https://huggingface.co/datasets/BinceQu/RoboHarness-assets/resolve/7e73016ce196802ffa89673b04905c605cbbf951/v1/docs/assets/rollouts/task01-head.mp4" poster="assets/rollouts/task01-poster.jpg?v=e5c4f15443a4" controls autoplay muted loop playsinline preload="none" aria-label="Picking Up Trash, head-camera rollout, instance 310">Your browser does not support video playback.</video><p class="rollout-error" role="status" hidden>Video could not load. <a href="https://huggingface.co/datasets/BinceQu/RoboHarness-assets/resolve/7e73016ce196802ffa89673b04905c605cbbf951/v1/docs/assets/rollouts/task01-head.mp4">Open the video ↗</a></p></div>
+            <div class="score-panel">
+              <div class="selected-metric"><span class="task-mean">0.8667</span><span>Mean Q-score</span></div>
+              <p class="chart-heading">Q-score by instance</p>
+              <div class="score-chart" role="img" aria-label="picking up trash. Archived Q-scores: instance 301: 1.0000; instance 304: 0.3333; instance 306: 1.0000; instance 308: 1.0000; instance 310: 1.0000"><div class="chart-column" style="--q:100.000000%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">1.0000</span><span class="chart-label">301</span></div><div class="chart-column" style="--q:33.333333%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">0.3333</span><span class="chart-label">304</span></div><div class="chart-column" style="--q:100.000000%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">1.0000</span><span class="chart-label">306</span></div><div class="chart-column" style="--q:100.000000%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">1.0000</span><span class="chart-label">308</span></div><div class="chart-column" style="--q:100.000000%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">1.0000</span><span class="chart-label">310</span></div></div>
+            </div>
+          </div>
+          <div class="task-media-caption"><span>Head camera · Instance 310</span><span>Recorded Q 1.0000</span><button type="button" class="speed-toggle" aria-label="Playback speed: 4 times. Change playback speed." data-rate="4">4×</button></div>
+          <nav class="task-navigation" aria-label="Switch task">
+            <button type="button" class="task-arrow" data-step="-1" aria-label="Previous task: Turning On Radio"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button>
+            <span class="task-position" aria-label="Task 2 of 9">02 <span aria-hidden="true">/</span> 09</span>
+            <button type="button" class="task-arrow" data-step="1" aria-label="Next task: Putting Away Halloween Decorations"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg></button>
+          </nav>
+        </article>
+<article class="task-card" id="card-task02" data-task="task02" aria-labelledby="title-task02" hidden>
+          <header class="task-card-heading">
+            <h3 id="title-task02">Putting Away Halloween Decorations</h3>
+            <a class="instruction-source" href="https://behavior.stanford.edu/challenge/tasks/02_putting_away_Halloween_decorations.html" target="_blank" rel="noopener">Official instruction ↗</a>
+            <p class="task-instruction">Place each of the two pumpkins and all three candles from the living room inside a cabinet in the living room (use any cabinet), then make sure every cabinet is closed, and position the cauldron so it is next to a table in the living room.</p>
+          </header>
+          <div class="task-columns">
+            <div class="rollout-panel"><video class="rollout-video" data-src="https://huggingface.co/datasets/BinceQu/RoboHarness-assets/resolve/7e73016ce196802ffa89673b04905c605cbbf951/v1/docs/assets/rollouts/task02-head.mp4" poster="assets/rollouts/task02-poster.jpg?v=9a3bdf3818ad" controls autoplay muted loop playsinline preload="none" aria-label="Putting Away Halloween Decorations, head-camera rollout, instance 310">Your browser does not support video playback.</video><p class="rollout-error" role="status" hidden>Video could not load. <a href="https://huggingface.co/datasets/BinceQu/RoboHarness-assets/resolve/7e73016ce196802ffa89673b04905c605cbbf951/v1/docs/assets/rollouts/task02-head.mp4">Open the video ↗</a></p></div>
+            <div class="score-panel">
+              <div class="selected-metric"><span class="task-mean">0.6857</span><span>Mean Q-score</span></div>
+              <p class="chart-heading">Q-score by instance</p>
+              <div class="score-chart" role="img" aria-label="putting away Halloween decorations. Archived Q-scores: instance 301: 0.5714; instance 304: 0.7143; instance 306: 0.4286; instance 308: 0.7143; instance 310: 1.0000"><div class="chart-column" style="--q:57.142857%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">0.5714</span><span class="chart-label">301</span></div><div class="chart-column" style="--q:71.428571%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">0.7143</span><span class="chart-label">304</span></div><div class="chart-column" style="--q:42.857143%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">0.4286</span><span class="chart-label">306</span></div><div class="chart-column" style="--q:71.428571%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">0.7143</span><span class="chart-label">308</span></div><div class="chart-column" style="--q:100.000000%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">1.0000</span><span class="chart-label">310</span></div></div>
+            </div>
+          </div>
+          <div class="task-media-caption"><span>Head camera · Instance 310</span><span>Recorded Q 0.2857</span><button type="button" class="speed-toggle" aria-label="Playback speed: 4 times. Change playback speed." data-rate="4">4×</button></div>
+          <nav class="task-navigation" aria-label="Switch task">
+            <button type="button" class="task-arrow" data-step="-1" aria-label="Previous task: Picking Up Trash"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button>
+            <span class="task-position" aria-label="Task 3 of 9">03 <span aria-hidden="true">/</span> 09</span>
+            <button type="button" class="task-arrow" data-step="1" aria-label="Next task: Cleaning Up Plates and Food"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg></button>
+          </nav>
+        </article>
+<article class="task-card" id="card-task03" data-task="task03" aria-labelledby="title-task03" hidden>
+          <header class="task-card-heading">
+            <h3 id="title-task03">Cleaning Up Plates and Food</h3>
+            <a class="instruction-source" href="https://behavior.stanford.edu/challenge/tasks/03_cleaning_up_plates_and_food.html" target="_blank" rel="noopener">Official instruction ↗</a>
+            <p class="task-instruction">From the breakfast table in the kitchen, move both pizzas - keeping each on its plate - into the same refrigerator, put both bowls into one sink, and make sure the refrigerator is closed.</p>
+          </header>
+          <div class="task-columns">
+            <div class="rollout-panel"><video class="rollout-video" data-src="https://huggingface.co/datasets/BinceQu/RoboHarness-assets/resolve/7e73016ce196802ffa89673b04905c605cbbf951/v1/docs/assets/rollouts/task03-head.mp4" poster="assets/rollouts/task03-poster.jpg?v=6b00ebbf3b69" controls autoplay muted loop playsinline preload="none" aria-label="Cleaning Up Plates and Food, head-camera rollout, instance 301">Your browser does not support video playback.</video><p class="rollout-error" role="status" hidden>Video could not load. <a href="https://huggingface.co/datasets/BinceQu/RoboHarness-assets/resolve/7e73016ce196802ffa89673b04905c605cbbf951/v1/docs/assets/rollouts/task03-head.mp4">Open the video ↗</a></p></div>
+            <div class="score-panel">
+              <div class="selected-metric"><span class="task-mean">0.2571</span><span>Mean Q-score</span></div>
+              <p class="chart-heading">Q-score by instance</p>
+              <div class="score-chart" role="img" aria-label="cleaning up plates and food. Archived Q-scores: instance 301: 0.2857; instance 304: 0.2857; instance 306: 0.2857; instance 308: 0.1429; instance 310: 0.2857"><div class="chart-column" style="--q:28.571429%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">0.2857</span><span class="chart-label">301</span></div><div class="chart-column" style="--q:28.571429%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">0.2857</span><span class="chart-label">304</span></div><div class="chart-column" style="--q:28.571429%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">0.2857</span><span class="chart-label">306</span></div><div class="chart-column" style="--q:14.285714%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">0.1429</span><span class="chart-label">308</span></div><div class="chart-column" style="--q:28.571429%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">0.2857</span><span class="chart-label">310</span></div></div>
+            </div>
+          </div>
+          <div class="task-media-caption"><span>Head camera · Instance 301</span><span>Recorded Q 0.2857</span><button type="button" class="speed-toggle" aria-label="Playback speed: 4 times. Change playback speed." data-rate="4">4×</button></div>
+          <nav class="task-navigation" aria-label="Switch task">
+            <button type="button" class="task-arrow" data-step="-1" aria-label="Previous task: Putting Away Halloween Decorations"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button>
+            <span class="task-position" aria-label="Task 4 of 9">04 <span aria-hidden="true">/</span> 09</span>
+            <button type="button" class="task-arrow" data-step="1" aria-label="Next task: Setting Mousetraps"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg></button>
+          </nav>
+        </article>
+<article class="task-card" id="card-task05" data-task="task05" aria-labelledby="title-task05" hidden>
+          <header class="task-card-heading">
+            <h3 id="title-task05">Setting Mousetraps</h3>
+            <a class="instruction-source" href="https://behavior.stanford.edu/challenge/tasks/05_setting_mousetraps.html" target="_blank" rel="noopener">Official instruction ↗</a>
+            <p class="task-instruction">Take the four mousetraps from the cabinet in the bathroom and place them on the bathroom floor. Make sure all four end up on the same floor surface, and ensure that at least two of them are either under or directly next to the same bathroom sink.</p>
+          </header>
+          <div class="task-columns">
+            <div class="rollout-panel"><video class="rollout-video" data-src="https://huggingface.co/datasets/BinceQu/RoboHarness-assets/resolve/7e73016ce196802ffa89673b04905c605cbbf951/v1/docs/assets/rollouts/task05-head.mp4" poster="assets/rollouts/task05-poster.jpg?v=91fe9cb3ee02" controls autoplay muted loop playsinline preload="none" aria-label="Setting Mousetraps, head-camera rollout, instance 304">Your browser does not support video playback.</video><p class="rollout-error" role="status" hidden>Video could not load. <a href="https://huggingface.co/datasets/BinceQu/RoboHarness-assets/resolve/7e73016ce196802ffa89673b04905c605cbbf951/v1/docs/assets/rollouts/task05-head.mp4">Open the video ↗</a></p></div>
+            <div class="score-panel">
+              <div class="selected-metric"><span class="task-mean">0.8333</span><span>Mean Q-score</span></div>
+              <p class="chart-heading">Q-score by instance</p>
+              <div class="score-chart" role="img" aria-label="setting mousetraps. Archived Q-scores: instance 301: 1.0000; instance 304: 1.0000; instance 306: 0.5000; instance 308: 1.0000; instance 310: 0.6667"><div class="chart-column" style="--q:100.000000%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">1.0000</span><span class="chart-label">301</span></div><div class="chart-column" style="--q:100.000000%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">1.0000</span><span class="chart-label">304</span></div><div class="chart-column" style="--q:50.000000%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">0.5000</span><span class="chart-label">306</span></div><div class="chart-column" style="--q:100.000000%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">1.0000</span><span class="chart-label">308</span></div><div class="chart-column" style="--q:66.666667%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">0.6667</span><span class="chart-label">310</span></div></div>
+            </div>
+          </div>
+          <div class="task-media-caption"><span>Head camera · Instance 304</span><span>Recorded Q 1.0000</span><button type="button" class="speed-toggle" aria-label="Playback speed: 4 times. Change playback speed." data-rate="4">4×</button></div>
+          <nav class="task-navigation" aria-label="Switch task">
+            <button type="button" class="task-arrow" data-step="-1" aria-label="Previous task: Cleaning Up Plates and Food"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button>
+            <span class="task-position" aria-label="Task 5 of 9">05 <span aria-hidden="true">/</span> 09</span>
+            <button type="button" class="task-arrow" data-step="1" aria-label="Next task: Hiding Easter Eggs"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg></button>
+          </nav>
+        </article>
+<article class="task-card" id="card-task06" data-task="task06" aria-labelledby="title-task06" hidden>
+          <header class="task-card-heading">
+            <h3 id="title-task06">Hiding Easter Eggs</h3>
+            <a class="instruction-source" href="https://behavior.stanford.edu/challenge/tasks/06_hiding_Easter_eggs.html" target="_blank" rel="noopener">Official instruction ↗</a>
+            <p class="task-instruction">Take the three Easter eggs out of the wicker basket on the lawn in the garden, then place them on the lawn next to a single tree (choose any tree) so that all three eggs are next to the same tree and none are left in the basket.</p>
+          </header>
+          <div class="task-columns">
+            <div class="rollout-panel"><video class="rollout-video" data-src="https://huggingface.co/datasets/BinceQu/RoboHarness-assets/resolve/7e73016ce196802ffa89673b04905c605cbbf951/v1/docs/assets/rollouts/task06-head.mp4" poster="assets/rollouts/task06-poster.jpg?v=b5353df84bb4" controls autoplay muted loop playsinline preload="none" aria-label="Hiding Easter Eggs, head-camera rollout, instance 301">Your browser does not support video playback.</video><p class="rollout-error" role="status" hidden>Video could not load. <a href="https://huggingface.co/datasets/BinceQu/RoboHarness-assets/resolve/7e73016ce196802ffa89673b04905c605cbbf951/v1/docs/assets/rollouts/task06-head.mp4">Open the video ↗</a></p></div>
+            <div class="score-panel">
+              <div class="selected-metric"><span class="task-mean">0.4222</span><span>Mean Q-score</span></div>
+              <p class="chart-heading">Q-score by instance</p>
+              <div class="score-chart" role="img" aria-label="hiding Easter eggs. Archived Q-scores: instance 301: 1.0000; instance 304: 0.0000; instance 306: 0.7778; instance 308: 0.3333; instance 310: 0.0000"><div class="chart-column" style="--q:100.000000%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">1.0000</span><span class="chart-label">301</span></div><div class="chart-column" style="--q:0.000000%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">0.0000</span><span class="chart-label">304</span></div><div class="chart-column" style="--q:77.777778%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">0.7778</span><span class="chart-label">306</span></div><div class="chart-column" style="--q:33.333333%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">0.3333</span><span class="chart-label">308</span></div><div class="chart-column" style="--q:0.000000%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">0.0000</span><span class="chart-label">310</span></div></div>
+            </div>
+          </div>
+          <div class="task-media-caption"><span>Head camera · Instance 301</span><span>Partial · No final Q</span><button type="button" class="speed-toggle" aria-label="Playback speed: 4 times. Change playback speed." data-rate="4">4×</button></div>
+          <nav class="task-navigation" aria-label="Switch task">
+            <button type="button" class="task-arrow" data-step="-1" aria-label="Previous task: Setting Mousetraps"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button>
+            <span class="task-position" aria-label="Task 6 of 9">06 <span aria-hidden="true">/</span> 09</span>
+            <button type="button" class="task-arrow" data-step="1" aria-label="Next task: Picking Up Toys"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg></button>
+          </nav>
+        </article>
+<article class="task-card" id="card-task07" data-task="task07" aria-labelledby="title-task07" hidden>
+          <header class="task-card-heading">
+            <h3 id="title-task07">Picking Up Toys</h3>
+            <a class="instruction-source" href="https://behavior.stanford.edu/challenge/tasks/07_picking_up_toys.html" target="_blank" rel="noopener">Official instruction ↗</a>
+            <p class="task-instruction">Put all the toys in the child&#x27;s room - the three board games (two on the bed and one on the table), the two jigsaw puzzles on the table, and the tennis ball on the table - inside the toy box on the table in the child&#x27;s room.</p>
+          </header>
+          <div class="task-columns">
+            <div class="rollout-panel"><video class="rollout-video" data-src="https://huggingface.co/datasets/BinceQu/RoboHarness-assets/resolve/7e73016ce196802ffa89673b04905c605cbbf951/v1/docs/assets/rollouts/task07-head.mp4" poster="assets/rollouts/task07-poster.jpg?v=bbc4d9298524" controls autoplay muted loop playsinline preload="none" aria-label="Picking Up Toys, head-camera rollout, instance 308">Your browser does not support video playback.</video><p class="rollout-error" role="status" hidden>Video could not load. <a href="https://huggingface.co/datasets/BinceQu/RoboHarness-assets/resolve/7e73016ce196802ffa89673b04905c605cbbf951/v1/docs/assets/rollouts/task07-head.mp4">Open the video ↗</a></p></div>
+            <div class="score-panel">
+              <div class="selected-metric"><span class="task-mean">0.3667</span><span>Mean Q-score</span></div>
+              <p class="chart-heading">Q-score by instance</p>
+              <div class="score-chart" role="img" aria-label="picking up toys. Archived Q-scores: instance 301: 0.0000; instance 304: 0.6667; instance 306: 0.5000; instance 308: 0.6667; instance 310: 0.0000"><div class="chart-column" style="--q:0.000000%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">0.0000</span><span class="chart-label">301</span></div><div class="chart-column" style="--q:66.666667%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">0.6667</span><span class="chart-label">304</span></div><div class="chart-column" style="--q:50.000000%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">0.5000</span><span class="chart-label">306</span></div><div class="chart-column" style="--q:66.666667%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">0.6667</span><span class="chart-label">308</span></div><div class="chart-column" style="--q:0.000000%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">0.0000</span><span class="chart-label">310</span></div></div>
+            </div>
+          </div>
+          <div class="task-media-caption"><span>Head camera · Instance 308</span><span>Recorded Q 0.5000</span><button type="button" class="speed-toggle" aria-label="Playback speed: 4 times. Change playback speed." data-rate="4">4×</button></div>
+          <nav class="task-navigation" aria-label="Switch task">
+            <button type="button" class="task-arrow" data-step="-1" aria-label="Previous task: Hiding Easter Eggs"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button>
+            <span class="task-position" aria-label="Task 7 of 9">07 <span aria-hidden="true">/</span> 09</span>
+            <button type="button" class="task-arrow" data-step="1" aria-label="Next task: Rearranging Kitchen Furniture"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg></button>
+          </nav>
+        </article>
+<article class="task-card" id="card-task08" data-task="task08" aria-labelledby="title-task08" hidden>
+          <header class="task-card-heading">
+            <h3 id="title-task08">Rearranging Kitchen Furniture</h3>
+            <a class="instruction-source" href="https://behavior.stanford.edu/challenge/tasks/08_rearranging_kitchen_furniture.html" target="_blank" rel="noopener">Official instruction ↗</a>
+            <p class="task-instruction">Move the toaster, food processor, and French press from the kitchen countertop into the same kitchen cabinet, and make sure that cabinet is closed at the end.</p>
+          </header>
+          <div class="task-columns">
+            <div class="rollout-panel"><video class="rollout-video" data-src="https://huggingface.co/datasets/BinceQu/RoboHarness-assets/resolve/7e73016ce196802ffa89673b04905c605cbbf951/v1/docs/assets/rollouts/task08-head.mp4" poster="assets/rollouts/task08-poster.jpg?v=d1ae148c031c" controls autoplay muted loop playsinline preload="none" aria-label="Rearranging Kitchen Furniture, head-camera rollout, instance 301">Your browser does not support video playback.</video><p class="rollout-error" role="status" hidden>Video could not load. <a href="https://huggingface.co/datasets/BinceQu/RoboHarness-assets/resolve/7e73016ce196802ffa89673b04905c605cbbf951/v1/docs/assets/rollouts/task08-head.mp4">Open the video ↗</a></p></div>
+            <div class="score-panel">
+              <div class="selected-metric"><span class="task-mean">0.4000</span><span>Mean Q-score</span></div>
+              <p class="chart-heading">Q-score by instance</p>
+              <div class="score-chart" role="img" aria-label="rearranging kitchen furniture. Archived Q-scores: instance 301: 0.2500; instance 304: 0.5000; instance 306: 0.2500; instance 308: 0.5000; instance 310: 0.5000"><div class="chart-column" style="--q:25.000000%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">0.2500</span><span class="chart-label">301</span></div><div class="chart-column" style="--q:50.000000%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">0.5000</span><span class="chart-label">304</span></div><div class="chart-column" style="--q:25.000000%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">0.2500</span><span class="chart-label">306</span></div><div class="chart-column" style="--q:50.000000%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">0.5000</span><span class="chart-label">308</span></div><div class="chart-column" style="--q:50.000000%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">0.5000</span><span class="chart-label">310</span></div></div>
+            </div>
+          </div>
+          <div class="task-media-caption"><span>Head camera · Instance 301</span><span>Recorded Q 0.5000</span><button type="button" class="speed-toggle" aria-label="Playback speed: 4 times. Change playback speed." data-rate="4">4×</button></div>
+          <nav class="task-navigation" aria-label="Switch task">
+            <button type="button" class="task-arrow" data-step="-1" aria-label="Previous task: Picking Up Toys"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button>
+            <span class="task-position" aria-label="Task 8 of 9">08 <span aria-hidden="true">/</span> 09</span>
+            <button type="button" class="task-arrow" data-step="1" aria-label="Next task: Putting Up Christmas Decorations Inside"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg></button>
+          </nav>
+        </article>
+<article class="task-card" id="card-task09" data-task="task09" aria-labelledby="title-task09" hidden>
+          <header class="task-card-heading">
+            <h3 id="title-task09">Putting Up Christmas Decorations Inside</h3>
+            <a class="instruction-source" href="https://behavior.stanford.edu/challenge/tasks/09_putting_up_Christmas_decorations_inside.html" target="_blank" rel="noopener">Official instruction ↗</a>
+            <p class="task-instruction">In the living room, take the wreath, three candy canes, and two pillar candles out of the wicker basket. Place the wreath and two of the candy canes on the same living-room sofa. Put the remaining candy cane on top of a dining-room table. Put both pillar candles together on top of one dining-room table (they can share the same table). Finally, place all three gift boxes under or right next to the Christmas tree in the living room.</p>
+          </header>
+          <div class="task-columns">
+            <div class="rollout-panel"><div class="rollout-empty"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="2" y="5" width="14" height="14" rx="3"/><path d="m16 9 6-3v12l-6-3"/></svg><p>Head-camera recording unavailable.</p></div></div>
+            <div class="score-panel">
+              <div class="selected-metric"><span class="task-mean">0.2222</span><span>Mean Q-score</span></div>
+              <p class="chart-heading">Q-score by instance</p>
+              <div class="score-chart" role="img" aria-label="putting up Christmas decorations inside. Archived Q-scores: instance 301: 0.3333; instance 304: 0.2222; instance 306: 0.3333; instance 308: 0.1111; instance 310: 0.1111"><div class="chart-column" style="--q:33.333333%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">0.3333</span><span class="chart-label">301</span></div><div class="chart-column" style="--q:22.222222%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">0.2222</span><span class="chart-label">304</span></div><div class="chart-column" style="--q:33.333333%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">0.3333</span><span class="chart-label">306</span></div><div class="chart-column" style="--q:11.111111%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">0.1111</span><span class="chart-label">308</span></div><div class="chart-column" style="--q:11.111111%" aria-hidden="true"><div class="chart-bar"></div><span class="chart-value">0.1111</span><span class="chart-label">310</span></div></div>
+            </div>
+          </div>
+          <div class="task-media-caption"></div>
+          <nav class="task-navigation" aria-label="Switch task">
+            <button type="button" class="task-arrow" data-step="-1" aria-label="Previous task: Rearranging Kitchen Furniture"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button>
+            <span class="task-position" aria-label="Task 9 of 9">09 <span aria-hidden="true">/</span> 09</span>
+            <button type="button" class="task-arrow" data-step="1" aria-label="Next task: Turning On Radio"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg></button>
+          </nav>
+        </article>
+      </div>
+      <p class="sr-only" id="task-announcement" aria-live="polite" aria-atomic="true"></p>
+      <details class="disclosure results-details">
+        <summary>All task scores <span aria-hidden="true">+</span></summary>
+        <div class="table-scroll" role="region" aria-label="Archived Q-score results; scroll horizontally on narrow screens" tabindex="0">
+          <table class="archive-table">
+            <caption class="sr-only">Historical directory-reported Q-scores. The mean is over five instances per task.</caption>
+            <thead><tr><th scope="col">Task</th><th scope="col">301</th><th scope="col">304</th><th scope="col">306</th><th scope="col">308</th><th scope="col">310</th><th scope="col">Mean Q</th></tr></thead>
+            <tbody><tr><th scope="row"><a href="https://github.com/BinceQu/RoboHarness/blob/main/tasks/task00.json">Turning on radio</a></th><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>1.0000</td><td>1.0000</td><td class="mean-cell">0.4000</td></tr>
+<tr><th scope="row"><a href="https://github.com/BinceQu/RoboHarness/blob/main/tasks/task01.json">Picking up trash</a></th><td>1.0000</td><td>0.3333</td><td>1.0000</td><td>1.0000</td><td>1.0000</td><td class="mean-cell">0.8667</td></tr>
+<tr><th scope="row"><a href="https://github.com/BinceQu/RoboHarness/blob/main/tasks/task02.json">Putting away halloween decorations</a></th><td>0.5714</td><td>0.7143</td><td>0.4286</td><td>0.7143</td><td>1.0000</td><td class="mean-cell">0.6857</td></tr>
+<tr><th scope="row"><a href="https://github.com/BinceQu/RoboHarness/blob/main/tasks/task03.json">Cleaning up plates and food</a></th><td>0.2857</td><td>0.2857</td><td>0.2857</td><td>0.1429</td><td>0.2857</td><td class="mean-cell">0.2571</td></tr>
+<tr><th scope="row"><a href="https://github.com/BinceQu/RoboHarness/blob/main/tasks/task05.json">Setting mousetraps</a></th><td>1.0000</td><td>1.0000</td><td>0.5000</td><td>1.0000</td><td>0.6667</td><td class="mean-cell">0.8333</td></tr>
+<tr><th scope="row"><a href="https://github.com/BinceQu/RoboHarness/blob/main/tasks/task06.json">Hiding easter eggs</a></th><td>1.0000</td><td>0.0000</td><td>0.7778</td><td>0.3333</td><td>0.0000</td><td class="mean-cell">0.4222</td></tr>
+<tr><th scope="row"><a href="https://github.com/BinceQu/RoboHarness/blob/main/tasks/task07.json">Picking up toys</a></th><td>0.0000</td><td>0.6667</td><td>0.5000</td><td>0.6667</td><td>0.0000</td><td class="mean-cell">0.3667</td></tr>
+<tr><th scope="row"><a href="https://github.com/BinceQu/RoboHarness/blob/main/tasks/task08.json">Rearranging kitchen furniture</a></th><td>0.2500</td><td>0.5000</td><td>0.2500</td><td>0.5000</td><td>0.5000</td><td class="mean-cell">0.4000</td></tr>
+<tr><th scope="row"><a href="https://github.com/BinceQu/RoboHarness/blob/main/tasks/task09.json">Putting up christmas decorations inside</a></th><td>0.3333</td><td>0.2222</td><td>0.3333</td><td>0.1111</td><td>0.1111</td><td class="mean-cell">0.2222</td></tr></tbody>
+          </table>
+        </div>
+        <div class="archive-notes">
+          <p>BEHAVIOR Challenge 2025, with twice the challenge step budget. Task04 has no supplied archive. For task00 and task05, directory reports differ from some preserved evaluator JSON; the directory values shown here remain the reference.</p>
+          <p>Videos show the highest-scoring available recorded run for each task. Recorded-run Q-scores and the historical five-instance results are reported separately. Easter eggs has an interrupted recording with no final score. The recovered Halloween recording ends 6.2 seconds before its evaluation.</p>
+          <a class="text-link" href="https://github.com/BinceQu/RoboHarness/blob/main/docs/provenance.md">Evaluation details <span aria-hidden="true">↗</span></a>
+        </div>
+      </details>
+    </section>
+
+    <section class="container section generalization-section" id="results" aria-labelledby="generalization-title">
+      <div class="section-heading">
+        <h2 id="generalization-title">Generalization across 100 objects</h2>
+      </div>
+      <div class="object-study">
+        <div class="object-copy">
+          <h3>Objects</h3>
+          <p>The catalog contains 100 rigid objects from the BEHAVIOR object library. Most have an extent of at most 0.21 m and a mass of at most 1.2 kg; the saucepan and one recorded outlier are retained as exceptions.</p>
+          <h3>Task</h3>
+          <p>The task is to pick up each object. Learned policies are evaluated in their training embodiment and simulation environment. For ASPIRE and RoboHarness, the object starts on the floor and the robot begins in a stooping pose. LIBERO-trained models use a cleared table with the object at its center.</p>
+          <p>Each trial runs for up to 2,000 simulation steps. Success means lifting the object at least 5 cm above its initial height.</p>
+        </div>
+        <figure class="object-figure">
+          <a class="figure-link" href="assets/object-generalization.pdf" target="_blank" rel="noopener" aria-label="Open the original 100-object catalog PDF">
+            <img src="assets/object-generalization.png" width="2797" height="2800" loading="lazy" alt="The 100 rigid objects used to evaluate generalization, drawn from the BEHAVIOR object library.">
+          </a>
+          <figcaption>100 objects from the BEHAVIOR library.</figcaption>
+        </figure>
+      </div>
+      <div class="comparison-heading">
+        <h3>Generalization without robot data</h3>
+        <p>Across the three tested LLMs, RoboHarness achieves 68–86 successes out of 100 without robot manipulation training data. More robot data does not consistently lead to better generalization among the VLA and world action model baselines.</p>
+      </div>
+      <figure class="comparison-figure">
+        <a class="figure-link" href="assets/robot-data-comparison.pdf" target="_blank" rel="noopener" aria-label="Open the original robot-data comparison PDF">
+          <img src="assets/robot-data-comparison.png" width="2771" height="1664" loading="lazy" alt="Successes out of 100 objects versus estimated hours of robot data, comparing RoboHarness with VLA models, world action models, and a pick-function baseline.">
+        </a>
+      </figure>
+    </section>
+
+    <section class="container reproduce-section" id="reproduce" aria-labelledby="reproduce-title">
+      <div class="reproduce-heading">
+        <div>
+          <h2 id="reproduce-title">Get started</h2>
+          <p>RoboHarness is open source.</p>
+        </div>
+        <a class="button primary" href="https://github.com/BinceQu/RoboHarness">GitHub <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="command-panel">
+        <div class="command-toolbar">
+          <span>Bash</span>
+          <button type="button" class="copy-button" data-copy="setup-command" data-copied="Commands copied." hidden aria-label="Copy setup commands">Copy</button>
+        </div>
+        <pre><code id="setup-command">git clone --recurse-submodules https://github.com/BinceQu/RoboHarness.git
+cd RoboHarness
+bash scripts/setup.sh</code></pre>
+      </div>
+      <p class="copy-feedback" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="container reproduce-section citation-section" id="citation" aria-labelledby="citation-title">
+      <div class="reproduce-heading">
+        <div>
+          <h2 id="citation-title">Citation</h2>
+          <p>If you use RoboHarness in your research, please cite our paper.</p>
+        </div>
+        <a class="button" href="https://arxiv.org/abs/2610.14018" target="_blank" rel="noopener noreferrer">arXiv <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="command-panel">
+        <div class="command-toolbar">
+          <span>BibTeX</span>
+          <button type="button" class="copy-button" data-copy="citation-bibtex" data-copied="BibTeX copied." hidden aria-label="Copy BibTeX citation">Copy</button>
+        </div>
+        <pre><code id="citation-bibtex">@misc{qu2026roboharness,
+  title         = {RoboHarness: A Simple Harness Outperforms VLA and World Action Models},
+  author        = {Bince Qu and Wei Chen and Bo Zhang},
+  year          = {2026},
+  eprint        = {2610.14018},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.RO},
+  doi           = {10.48550/arXiv.2610.14018},
+  url           = {https://arxiv.org/abs/2610.14018}
+}</code></pre>
+      </div>
+      <p class="copy-feedback" role="status" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <footer class="container site-footer">
+    <p class="contributors" aria-label="Project contributors"><a href="https://github.com/BinceQu">BinceQu</a> <span aria-hidden="true">·</span> Codex</p>
+    <div class="footer-links">
+      <a lang="zh-CN" href="https://github.com/BinceQu/RoboHarness/blob/main/README.zh-CN.md">中文</a>
+      <a href="https://github.com/BinceQu/RoboHarness/blob/main/LICENSE">MIT license</a>
+      <a href="https://github.com/BinceQu/RoboHarness/blob/main/THIRD_PARTY_NOTICES.md">Third-party terms</a>
+    </div>
+  </footer>
+  <script type="application/json" id="archive-data">[{"id":"task00","name":"turning on radio","mean":0.4,"maxSteps":4299,"cases":[{"instance":301,"slot":0,"q":0.0},{"instance":304,"slot":3,"q":0.0},{"instance":306,"slot":5,"q":0.0},{"instance":308,"slot":7,"q":1.0},{"instance":310,"slot":9,"q":1.0}],"prompts":[{"instance":301,"path":"prompt/task00/recovered_206fb2452f46.txt","sha256":"206fb2452f46bb34d273ea9bfb3b49cc309ae16c6bed6fd06da61513b7d1f593"},{"instance":304,"path":"prompt/task00/v24_ecaa0bd65dcf.txt","sha256":"ecaa0bd65dcfbf28dceae8e6fdccc38297a2e2a6a655d54cbfaa2a6e0a7ed9b3"},{"instance":306,"path":"prompt/task00/v24_ecaa0bd65dcf.txt","sha256":"ecaa0bd65dcfbf28dceae8e6fdccc38297a2e2a6a655d54cbfaa2a6e0a7ed9b3"},{"instance":308,"path":"prompt/task00/v24_ecaa0bd65dcf.txt","sha256":"ecaa0bd65dcfbf28dceae8e6fdccc38297a2e2a6a655d54cbfaa2a6e0a7ed9b3"},{"instance":310,"path":"prompt/task00/v24_ecaa0bd65dcf.txt","sha256":"ecaa0bd65dcfbf28dceae8e6fdccc38297a2e2a6a655d54cbfaa2a6e0a7ed9b3"}],"title":"Turning On Radio","instruction":"Turn on the radio receiver that's on the table in the living room.","instructionUrl":"https://behavior.stanford.edu/challenge/tasks/00_turning_on_radio.html","rollout":{"run":"task00-20261012-153655-03455c3a","instance":307,"q":1.0,"label":"Head camera","video":"https://huggingface.co/datasets/BinceQu/RoboHarness-assets/resolve/7e73016ce196802ffa89673b04905c605cbbf951/v1/docs/assets/rollouts/task00-head.mp4","poster":"assets/rollouts/task00-poster.jpg?v=154aa9706bb5","duration":31.2,"defaultPlaybackRate":4,"missingTailSeconds":0.0}},{"id":"task01","name":"picking up trash","mean":0.8666666666666666,"maxSteps":10535,"cases":[{"instance":301,"slot":0,"q":1.0},{"instance":304,"slot":3,"q":0.3333333333333333},{"instance":306,"slot":5,"q":1.0},{"instance":308,"slot":7,"q":1.0},{"instance":310,"slot":9,"q":1.0}],"prompts":[{"instance":301,"path":"prompt/task01/v4_39be138fa40a.txt","sha256":"39be138fa40ae8766fa1c6190fbd5dcbeb526a4091d46b4be3fb519172009249"},{"instance":304,"path":"prompt/task01/v4_39be138fa40a.txt","sha256":"39be138fa40ae8766fa1c6190fbd5dcbeb526a4091d46b4be3fb519172009249"},{"instance":306,"path":"prompt/task01/v4_39be138fa40a.txt","sha256":"39be138fa40ae8766fa1c6190fbd5dcbeb526a4091d46b4be3fb519172009249"},{"instance":308,"path":"prompt/task01/v4_39be138fa40a.txt","sha256":"39be138fa40ae8766fa1c6190fbd5dcbeb526a4091d46b4be3fb519172009249"},{"instance":310,"path":"prompt/task01/v4_39be138fa40a.txt","sha256":"39be138fa40ae8766fa1c6190fbd5dcbeb526a4091d46b4be3fb519172009249"}],"title":"Picking Up Trash","instruction":"Put the three cans of soda from the living room inside the trash can in the kitchen.","instructionUrl":"https://behavior.stanford.edu/challenge/tasks/01_picking_up_trash.html","rollout":{"run":"t01-15061-0930011643-fe2bf3730c13","instance":310,"q":1.0,"label":"Head camera","video":"https://huggingface.co/datasets/BinceQu/RoboHarness-assets/resolve/7e73016ce196802ffa89673b04905c605cbbf951/v1/docs/assets/rollouts/task01-head.mp4","poster":"assets/rollouts/task01-poster.jpg?v=e5c4f15443a4","duration":300.8,"defaultPlaybackRate":4,"missingTailSeconds":0.0}},{"id":"task02","name":"putting away Halloween decorations","mean":0.6857142857142857,"maxSteps":27664,"cases":[{"instance":301,"slot":0,"q":0.5714285714285714},{"instance":304,"slot":3,"q":0.7142857142857143},{"instance":306,"slot":5,"q":0.42857142857142855},{"instance":308,"slot":7,"q":0.7142857142857143},{"instance":310,"slot":9,"q":1.0}],"prompts":[{"instance":301,"path":"prompt/task02/v16_fc8e1be396ee.txt","sha256":"fc8e1be396ee218e173b11b749c5d32fb3761ef283321812bfda71d89fad21f6"},{"instance":304,"path":"prompt/task02/v17_6ee06b7a10da.txt","sha256":"6ee06b7a10daa16c5001f25260f04887493cd582f53ed835c0ed35f28fa0254e"},{"instance":306,"path":"prompt/task02/v18_85ab4a115842.txt","sha256":"85ab4a115842339c6620744ef5e8bb9d84a4bcc771af4397f19dffe3c66db0d6"},{"instance":308,"path":"prompt/task02/v18_85ab4a115842.txt","sha256":"85ab4a115842339c6620744ef5e8bb9d84a4bcc771af4397f19dffe3c66db0d6"},{"instance":310,"path":"prompt/task02/v18_85ab4a115842.txt","sha256":"85ab4a115842339c6620744ef5e8bb9d84a4bcc771af4397f19dffe3c66db0d6"}],"title":"Putting Away Halloween Decorations","instruction":"Place each of the two pumpkins and all three candles from the living room inside a cabinet in the living room (use any cabinet), then make sure every cabinet is closed, and position the cauldron so it is next to a table in the living room.","instructionUrl":"https://behavior.stanford.edu/challenge/tasks/02_putting_away_Halloween_decorations.html","rollout":{"run":"t02-15062-1004163443-35731a1d0851","instance":310,"q":0.2857142857142857,"label":"Head camera","video":"https://huggingface.co/datasets/BinceQu/RoboHarness-assets/resolve/7e73016ce196802ffa89673b04905c605cbbf951/v1/docs/assets/rollouts/task02-head.mp4","poster":"assets/rollouts/task02-poster.jpg?v=9a3bdf3818ad","duration":912.8,"defaultPlaybackRate":4,"missingTailSeconds":6.233}},{"id":"task03","name":"cleaning up plates and food","mean":0.2571428571428571,"maxSteps":27392,"cases":[{"instance":301,"slot":0,"q":0.2857142857142857},{"instance":304,"slot":3,"q":0.2857142857142857},{"instance":306,"slot":5,"q":0.2857142857142857},{"instance":308,"slot":7,"q":0.14285714285714285},{"instance":310,"slot":9,"q":0.2857142857142857}],"prompts":[{"instance":301,"path":"prompt/task03/v4_11b5ae18163a.txt","sha256":"11b5ae18163af2168ba6603649782a2c4ab6fd1ca41eff4b9bb7ed001671b4b6"},{"instance":304,"path":"prompt/task03/v4_11b5ae18163a.txt","sha256":"11b5ae18163af2168ba6603649782a2c4ab6fd1ca41eff4b9bb7ed001671b4b6"},{"instance":306,"path":"prompt/task03/v4_11b5ae18163a.txt","sha256":"11b5ae18163af2168ba6603649782a2c4ab6fd1ca41eff4b9bb7ed001671b4b6"},{"instance":308,"path":"prompt/task03/v4_11b5ae18163a.txt","sha256":"11b5ae18163af2168ba6603649782a2c4ab6fd1ca41eff4b9bb7ed001671b4b6"},{"instance":310,"path":"prompt/task03/v4_11b5ae18163a.txt","sha256":"11b5ae18163af2168ba6603649782a2c4ab6fd1ca41eff4b9bb7ed001671b4b6"}],"title":"Cleaning Up Plates and Food","instruction":"From the breakfast table in the kitchen, move both pizzas - keeping each on its plate - into the same refrigerator, put both bowls into one sink, and make sure the refrigerator is closed.","instructionUrl":"https://behavior.stanford.edu/challenge/tasks/03_cleaning_up_plates_and_food.html","rollout":{"run":"task03-20261011-233250-ee035d6f","instance":301,"q":0.2857142857142857,"label":"Head camera","video":"https://huggingface.co/datasets/BinceQu/RoboHarness-assets/resolve/7e73016ce196802ffa89673b04905c605cbbf951/v1/docs/assets/rollouts/task03-head.mp4","poster":"assets/rollouts/task03-poster.jpg?v=6b00ebbf3b69","duration":509.1,"defaultPlaybackRate":4,"missingTailSeconds":0.0}},{"id":"task05","name":"setting mousetraps","mean":0.8333333333333334,"maxSteps":20343,"cases":[{"instance":301,"slot":0,"q":1.0},{"instance":304,"slot":3,"q":1.0},{"instance":306,"slot":5,"q":0.5},{"instance":308,"slot":7,"q":1.0},{"instance":310,"slot":9,"q":0.6666666666666666}],"prompts":[{"instance":301,"path":"prompt/task05/v7_25db77e02e1e.txt","sha256":"25db77e02e1e0c7c765c419fa22574999fc57be845cddae616c0f22dc83f4fff"},{"instance":304,"path":"prompt/task05/v7_25db77e02e1e.txt","sha256":"25db77e02e1e0c7c765c419fa22574999fc57be845cddae616c0f22dc83f4fff"},{"instance":306,"path":"prompt/task05/v7_25db77e02e1e.txt","sha256":"25db77e02e1e0c7c765c419fa22574999fc57be845cddae616c0f22dc83f4fff"},{"instance":308,"path":"prompt/task05/v8_cb698b1105f7.txt","sha256":"cb698b1105f7e6028b33b6fc5ca9fe5e6528b3950c95351a1d7090132e710c4b"},{"instance":310,"path":"prompt/task05/v8_cb698b1105f7.txt","sha256":"cb698b1105f7e6028b33b6fc5ca9fe5e6528b3950c95351a1d7090132e710c4b"}],"title":"Setting Mousetraps","instruction":"Take the four mousetraps from the cabinet in the bathroom and place them on the bathroom floor. Make sure all four end up on the same floor surface, and ensure that at least two of them are either under or directly next to the same bathroom sink.","instructionUrl":"https://behavior.stanford.edu/challenge/tasks/05_setting_mousetraps.html","rollout":{"run":"t05-15065-1002183453-eddfd30d4cf1","instance":304,"q":1.0,"label":"Head camera","video":"https://huggingface.co/datasets/BinceQu/RoboHarness-assets/resolve/7e73016ce196802ffa89673b04905c605cbbf951/v1/docs/assets/rollouts/task05-head.mp4","poster":"assets/rollouts/task05-poster.jpg?v=91fe9cb3ee02","duration":519.9,"defaultPlaybackRate":4,"missingTailSeconds":0.0}},{"id":"task06","name":"hiding Easter eggs","mean":0.4222222222222222,"maxSteps":15239,"cases":[{"instance":301,"slot":0,"q":1.0},{"instance":304,"slot":3,"q":0.0},{"instance":306,"slot":5,"q":0.7777777777777778},{"instance":308,"slot":7,"q":0.3333333333333333},{"instance":310,"slot":9,"q":0.0}],"prompts":[{"instance":301,"path":"prompt/task06/v7_625983041765.txt","sha256":"625983041765177cfb0fe7427c1cba23b2c4503df171d4d768fbc4a34aea3eab"},{"instance":304,"path":"prompt/task06/v8_b5ec2bb4b4ef.txt","sha256":"b5ec2bb4b4ef49da86058d5475504a6882a117b6b8633b44802bee56cdf84520"},{"instance":306,"path":"prompt/task06/v8_b5ec2bb4b4ef.txt","sha256":"b5ec2bb4b4ef49da86058d5475504a6882a117b6b8633b44802bee56cdf84520"},{"instance":308,"path":"prompt/task06/v9_6df0ac887d1e.txt","sha256":"6df0ac887d1edf93c4d01b910089abf55849aa9e8bf1320b53fd6e08a50e1867"},{"instance":310,"path":"prompt/task06/v9_6df0ac887d1e.txt","sha256":"6df0ac887d1edf93c4d01b910089abf55849aa9e8bf1320b53fd6e08a50e1867"}],"title":"Hiding Easter Eggs","instruction":"Take the three Easter eggs out of the wicker basket on the lawn in the garden, then place them on the lawn next to a single tree (choose any tree) so that all three eggs are next to the same tree and none are left in the basket.","instructionUrl":"https://behavior.stanford.edu/challenge/tasks/06_hiding_Easter_eggs.html","rollout":{"run":"t06-15066-1003002354-c15bde00637c","instance":301,"q":null,"label":"Head camera \u00b7 Partial rollout","video":"https://huggingface.co/datasets/BinceQu/RoboHarness-assets/resolve/7e73016ce196802ffa89673b04905c605cbbf951/v1/docs/assets/rollouts/task06-head.mp4","poster":"assets/rollouts/task06-poster.jpg?v=b5353df84bb4","duration":232.033333,"defaultPlaybackRate":4,"missingTailSeconds":2.4}},{"id":"task07","name":"picking up toys","mean":0.3666666666666666,"maxSteps":37781,"cases":[{"instance":301,"slot":0,"q":0.0},{"instance":304,"slot":3,"q":0.6666666666666666},{"instance":306,"slot":5,"q":0.5},{"instance":308,"slot":7,"q":0.6666666666666666},{"instance":310,"slot":9,"q":0.0}],"prompts":[{"instance":301,"path":"prompt/task07/v18_420cc8ac0d5d.txt","sha256":"420cc8ac0d5d4a0c3e01bb9584e8308e46a7b230ebdb6362aff62f781ab6e82e"},{"instance":304,"path":"prompt/task07/v18_420cc8ac0d5d.txt","sha256":"420cc8ac0d5d4a0c3e01bb9584e8308e46a7b230ebdb6362aff62f781ab6e82e"},{"instance":306,"path":"prompt/task07/v18_420cc8ac0d5d.txt","sha256":"420cc8ac0d5d4a0c3e01bb9584e8308e46a7b230ebdb6362aff62f781ab6e82e"},{"instance":308,"path":"prompt/task07/v18_420cc8ac0d5d.txt","sha256":"420cc8ac0d5d4a0c3e01bb9584e8308e46a7b230ebdb6362aff62f781ab6e82e"},{"instance":310,"path":"prompt/task07/v18_420cc8ac0d5d.txt","sha256":"420cc8ac0d5d4a0c3e01bb9584e8308e46a7b230ebdb6362aff62f781ab6e82e"}],"title":"Picking Up Toys","instruction":"Put all the toys in the child's room - the three board games (two on the bed and one on the table), the two jigsaw puzzles on the table, and the tennis ball on the table - inside the toy box on the table in the child's room.","instructionUrl":"https://behavior.stanford.edu/challenge/tasks/07_picking_up_toys.html","rollout":{"run":"t07-15067-1004063437-d589c630b478","instance":308,"q":0.5,"label":"Head camera","video":"https://huggingface.co/datasets/BinceQu/RoboHarness-assets/resolve/7e73016ce196802ffa89673b04905c605cbbf951/v1/docs/assets/rollouts/task07-head.mp4","poster":"assets/rollouts/task07-poster.jpg?v=bbc4d9298524","duration":1257.933333,"defaultPlaybackRate":4,"missingTailSeconds":0.0}},{"id":"task08","name":"rearranging kitchen furniture","mean":0.4,"maxSteps":17886,"cases":[{"instance":301,"slot":0,"q":0.25},{"instance":304,"slot":3,"q":0.5},{"instance":306,"slot":5,"q":0.25},{"instance":308,"slot":7,"q":0.5},{"instance":310,"slot":9,"q":0.5}],"prompts":[{"instance":301,"path":"prompt/task08/v25_62c12d99b1ce.txt","sha256":"62c12d99b1ce52e6a3e2c9b62c61068d8c10be93cbe3d342c884f6046fd6bd77"},{"instance":304,"path":"prompt/task08/v25_62c12d99b1ce.txt","sha256":"62c12d99b1ce52e6a3e2c9b62c61068d8c10be93cbe3d342c884f6046fd6bd77"},{"instance":306,"path":"prompt/task08/v25_62c12d99b1ce.txt","sha256":"62c12d99b1ce52e6a3e2c9b62c61068d8c10be93cbe3d342c884f6046fd6bd77"},{"instance":308,"path":"prompt/task08/v25_62c12d99b1ce.txt","sha256":"62c12d99b1ce52e6a3e2c9b62c61068d8c10be93cbe3d342c884f6046fd6bd77"},{"instance":310,"path":"prompt/task08/v25_62c12d99b1ce.txt","sha256":"62c12d99b1ce52e6a3e2c9b62c61068d8c10be93cbe3d342c884f6046fd6bd77"}],"title":"Rearranging Kitchen Furniture","instruction":"Move the toaster, food processor, and French press from the kitchen countertop into the same kitchen cabinet, and make sure that cabinet is closed at the end.","instructionUrl":"https://behavior.stanford.edu/challenge/tasks/08_rearranging_kitchen_furniture.html","rollout":{"run":"task08-20261011-234028-3e997e34","instance":301,"q":0.5,"label":"Head camera","video":"https://huggingface.co/datasets/BinceQu/RoboHarness-assets/resolve/7e73016ce196802ffa89673b04905c605cbbf951/v1/docs/assets/rollouts/task08-head.mp4","poster":"assets/rollouts/task08-poster.jpg?v=d1ae148c031c","duration":397.8666666666667,"defaultPlaybackRate":4,"missingTailSeconds":0.0}},{"id":"task09","name":"putting up Christmas decorations inside","mean":0.22222222222222224,"maxSteps":27437,"cases":[{"instance":301,"slot":0,"q":0.3333333333333333},{"instance":304,"slot":3,"q":0.2222222222222222},{"instance":306,"slot":5,"q":0.3333333333333333},{"instance":308,"slot":7,"q":0.1111111111111111},{"instance":310,"slot":9,"q":0.1111111111111111}],"prompts":[{"instance":301,"path":"prompt/task09/v3_bde4c7512f25.txt","sha256":"bde4c7512f25417f5575935e299377540c792d97562cb7465fa95e0d31b4b9e4"},{"instance":304,"path":"prompt/task09/v3_bde4c7512f25.txt","sha256":"bde4c7512f25417f5575935e299377540c792d97562cb7465fa95e0d31b4b9e4"},{"instance":306,"path":"prompt/task09/v3_bde4c7512f25.txt","sha256":"bde4c7512f25417f5575935e299377540c792d97562cb7465fa95e0d31b4b9e4"},{"instance":308,"path":"prompt/task09/v3_bde4c7512f25.txt","sha256":"bde4c7512f25417f5575935e299377540c792d97562cb7465fa95e0d31b4b9e4"},{"instance":310,"path":"prompt/task09/v3_bde4c7512f25.txt","sha256":"bde4c7512f25417f5575935e299377540c792d97562cb7465fa95e0d31b4b9e4"}],"title":"Putting Up Christmas Decorations Inside","instruction":"In the living room, take the wreath, three candy canes, and two pillar candles out of the wicker basket. Place the wreath and two of the candy canes on the same living-room sofa. Put the remaining candy cane on top of a dining-room table. Put both pillar candles together on top of one dining-room table (they can share the same table). Finally, place all three gift boxes under or right next to the Christmas tree in the living room.","instructionUrl":"https://behavior.stanford.edu/challenge/tasks/09_putting_up_Christmas_decorations_inside.html"}]</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "sourceFile": "roboharness_promo_v11.mp4",
+  "sourceVersion": 11,
+  "video": "assets/method/roboharness-method.mp4",
+  "videoSha256": "4e2dda2c662aefc768c337bbe3e754a5c30baa2d962015af5ebee9a16c8a5cbd",
+  "bytes": 41614494,
+  "poster": "assets/method/roboharness-method-poster.jpg",
+  "posterSha256": "1fe4433a5563bdce223df3130e5d442eb641e5ac0bf27011d7d0036bb74a3201",
+  "duration": 140.434,
+  "width": 1920,
+  "height": 1080
+}
